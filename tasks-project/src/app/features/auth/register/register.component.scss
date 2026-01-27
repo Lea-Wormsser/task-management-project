@@ -1,0 +1,107 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.register-card {
+  max-width: 480px;
+  width: 100%;
+  padding: 48px 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  direction: rtl;
+  background: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
+
+  mat-card-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+  }
+
+  mat-card-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+}
+
+mat-card-content {
+  padding: 0;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+  direction: rtl;
+  text-align: right;
+}
+
+::ng-deep .full-width .mat-mdc-form-field-infix {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.submit-button {
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 12px !important;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  
+  &:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4) !important;
+  }
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+  }
+}
+
+mat-spinner {
+  display: inline-block;
+}

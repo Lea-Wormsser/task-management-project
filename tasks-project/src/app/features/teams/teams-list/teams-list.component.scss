@@ -1,0 +1,231 @@
+.teams-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-name {
+  margin-left: 16px;
+  font-weight: 500;
+}
+
+.content {
+  flex: 1;
+  padding: 32px;
+  background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+  overflow-y: auto;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.teams-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+  }
+  
+  button {
+    height: 48px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  margin: 40px auto;
+  max-width: 500px;
+
+  mat-icon {
+    font-size: 96px;
+    width: 96px;
+    height: 96px;
+    color: #cbd5e1;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin: 0 0 12px 0;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0 0 32px 0;
+    line-height: 1.6;
+  }
+  
+  button {
+    height: 48px;
+    padding: 0 32px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 28px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.team-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  }
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04) !important;
+  }
+
+  mat-card-header {
+    margin-bottom: 20px;
+    padding-top: 8px;
+  }
+
+  mat-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+
+  mat-card-subtitle {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+}
+
+.members-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  
+  .members-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.member-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+
+  .owner-icon {
+    color: #f59e0b;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  background: #f8fafc;
+
+  button {
+    flex: 1;
+    height: 40px;
+    font-weight: 500;
+    
+    mat-icon {
+      margin-left: 6px;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+    
+    &:hover {
+      background-color: rgba(99, 102, 241, 0.08);
+    }
+  }
+}

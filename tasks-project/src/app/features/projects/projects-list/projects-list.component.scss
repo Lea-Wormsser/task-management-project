@@ -1,0 +1,204 @@
+.projects-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  background: var(--background);
+
+  mat-toolbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .user-name {
+    margin-left: 16px;
+    font-weight: 500;
+  }
+
+  .content {
+    flex: 1;
+    padding: 32px;
+    background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+    overflow-y: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+    
+    button {
+      height: 48px;
+      padding: 0 24px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    margin: 40px auto;
+    max-width: 500px;
+
+    mat-icon {
+      font-size: 96px;
+      width: 96px;
+      height: 96px;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 0 0 12px 0;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin: 0 0 32px 0;
+      line-height: 1.6;
+    }
+    
+    button {
+      height: 48px;
+      padding: 0 32px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 28px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+      }
+      
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04) !important;
+      }
+
+      mat-card-header {
+        margin-bottom: 20px;
+        padding-top: 8px;
+        
+        mat-card-title {
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text-primary);
+          letter-spacing: -0.3px;
+        }
+      }
+
+      mat-card-content {
+        .status-section {
+          margin-bottom: 20px;
+          padding: 16px;
+          background: #f8fafc;
+          border-radius: 10px;
+          border: 1px solid #e2e8f0;
+          
+          h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+          }
+          
+          p {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin: 0;
+          }
+        }
+      }
+
+      mat-card-actions {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px;
+        border-top: 1px solid var(--border-color);
+        background: #f8fafc;
+        
+        button {
+          flex: 1;
+          height: 40px;
+          font-weight: 500;
+          margin: 0 4px;
+          
+          mat-icon {
+            margin-left: 6px;
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+          }
+          
+          &:hover {
+            background-color: rgba(99, 102, 241, 0.08);
+          }
+        }
+      }
+    }
+  }
+}

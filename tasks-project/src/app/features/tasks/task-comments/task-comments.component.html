@@ -1,0 +1,63 @@
+<div class="comments-container">
+  <h3 class="comments-title">
+    <mat-icon>comment</mat-icon>
+    תגובות
+  </h3>
+
+  @if (isLoading() && comments().length === 0) {
+    <div class="loading-state">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  }
+
+  <div class="comments-list">
+    @if (comments().length === 0 && !isLoading()) {
+      <div class="empty-state">
+        <mat-icon>chat_bubble_outline</mat-icon>
+        <p>אין תגובות עדיין. היי הראשון להגיב!</p>
+      </div>
+    }
+
+    @for (comment of comments(); track comment.id) {
+      <div class="comment-card" [class.my-comment]="isMyComment(comment)">
+        <div class="comment-header">
+          <div class="user-info">
+            <mat-icon class="user-avatar">account_circle</mat-icon>
+            <span class="user-name">{{ comment.user?.name || 'משתמש' }}</span>
+          </div>
+          <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
+        </div>
+        <div class="comment-content">
+          {{ comment.body }}
+        </div>
+      </div>
+    }
+  </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="comment-form">
+    <mat-form-field appearance="fill" class="comment-input">
+      <mat-label>הוסף תגובה</mat-label>
+      <textarea 
+        matInput 
+        formControlName="content" 
+        rows="3"
+        placeholder="כתוב תגובה..."></textarea>
+      @if (commentForm.get('content')?.hasError('required')) {
+        <mat-error>נא להזין תוכן לתגובה</mat-error>
+      }
+    </mat-form-field>
+
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit"
+      [disabled]="!commentForm.valid || isLoading()">
+      @if (isLoading()) {
+        <mat-spinner diameter="20"></mat-spinner>
+      } @else {
+        <mat-icon>send</mat-icon>
+        שלח תגובה
+      }
+    </button>
+  </form>
+</div>

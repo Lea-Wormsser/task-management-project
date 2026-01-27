@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>פרויקט חדש</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="projectForm">
+    <mat-form-field appearance="fill">
+      <mat-label>שם הפרויקט</mat-label>
+      <input matInput formControlName="name" required>
+      @if (projectForm.get('name')?.hasError('required')) {
+        <mat-error>שם הפרויקט הוא שדה חובה</mat-error>
+      }
+      @if (projectForm.get('name')?.hasError('minlength')) {
+        <mat-error>שם הפרויקט חייב להכיל לפחות 2 תווים</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>תיאור</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isLoading()">
+    ביטול
+  </button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" 
+          [disabled]="!projectForm.valid || isLoading()">
+    @if (isLoading()) {
+      <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+      צור פרויקט
+    }
+  </button>
+</mat-dialog-actions>

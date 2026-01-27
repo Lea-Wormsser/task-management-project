@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>צור צוות חדש</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="teamForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>שם הקבוצה</mat-label>
+      <input 
+        matInput 
+        formControlName="name"
+        autocomplete="off">
+      @if (teamForm.get('name')?.invalid && teamForm.get('name')?.touched) {
+        <mat-error>{{ getNameErrorMessage() }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>תיאור (אופציונלי)</mat-label>
+      <textarea 
+        matInput 
+        formControlName="description"
+        rows="3"
+        autocomplete="off"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isLoading">
+    ביטול
+  </button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="onSubmit()"
+    [disabled]="teamForm.invalid || isLoading">
+    @if (isLoading) {
+      <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+      <span>צור צוות</span>
+    }
+  </button>
+</mat-dialog-actions>

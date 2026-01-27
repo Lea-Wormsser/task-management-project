@@ -1,0 +1,143 @@
+<div class="task-board-container">
+  <mat-toolbar class="board-toolbar" dir="rtl">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <span class="project-title">{{ projectName }}</span>
+    <span class="spacer"></span>
+    <span class="user-name">{{ authService.currentUser()?.name }}</span>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="board-content">
+    @if (isLoading()) {
+      <div class="loading-container">
+        <mat-spinner></mat-spinner>
+      </div>
+    } @else {
+      <div class="board-columns">
+        <!-- Backlog Column -->
+        <div class="board-column">
+          <div class="column-header">
+            <h2>Backlog</h2>
+            <button mat-icon-button (click)="openCreateTaskDialog('backlog')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          
+          <div 
+            class="task-list"
+            cdkDropList
+            #backlogList="cdkDropList"
+            [cdkDropListData]="backlogTasks()"
+            [cdkDropListConnectedTo]="[inProgressList, doneList]"
+            (cdkDropListDropped)="drop($event, 'backlog')">
+            @for (task of backlogTasks(); track task.id) {
+              <div class="task-card" cdkDrag (click)="openTaskDetails(task)">
+                <div class="task-header">
+                  <h3>{{ task.title }}</h3>
+                  <button mat-icon-button (click)="deleteTask(task); $event.stopPropagation()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
+                @if (task.description) {
+                  <p class="task-description">{{ task.description }}</p>
+                }
+                <div class="task-footer">
+                  <span 
+                    class="priority-badge"
+                    [style.background-color]="getPriorityColor(task.priority)">
+                    {{ getPriorityLabel(task.priority) }}
+                  </span>
+                  <mat-icon class="comment-icon">comment</mat-icon>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- In Progress Column -->
+        <div class="board-column">
+          <div class="column-header">
+            <h2>In Progress</h2>
+            <button mat-icon-button (click)="openCreateTaskDialog('in_progress')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          
+          <div 
+            class="task-list"
+            cdkDropList
+            #inProgressList="cdkDropList"
+            [cdkDropListData]="inProgressTasks()"
+            [cdkDropListConnectedTo]="[backlogList, doneList]"
+            (cdkDropListDropped)="drop($event, 'in_progress')">
+            @for (task of inProgressTasks(); track task.id) {
+              <div class="task-card" cdkDrag (click)="openTaskDetails(task)">
+                <div class="task-header">
+                  <h3>{{ task.title }}</h3>
+                  <button mat-icon-button (click)="deleteTask(task); $event.stopPropagation()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
+                @if (task.description) {
+                  <p class="task-description">{{ task.description }}</p>
+                }
+                <div class="task-footer">
+                  <span 
+                    class="priority-badge"
+                    [style.background-color]="getPriorityColor(task.priority)">
+                    {{ getPriorityLabel(task.priority) }}
+                  </span>
+                  <mat-icon class="comment-icon">comment</mat-icon>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Done Column -->
+        <div class="board-column">
+          <div class="column-header">
+            <h2>Done</h2>
+            <button mat-icon-button (click)="openCreateTaskDialog('done')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          
+          <div 
+            class="task-list"
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="doneTasks()"
+            [cdkDropListConnectedTo]="[backlogList, inProgressList]"
+            (cdkDropListDropped)="drop($event, 'done')">
+            @for (task of doneTasks(); track task.id) {
+              <div class="task-card" cdkDrag (click)="openTaskDetails(task)">
+                <div class="task-header">
+                  <h3>{{ task.title }}</h3>
+                  <button mat-icon-button (click)="deleteTask(task); $event.stopPropagation()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
+                @if (task.description) {
+                  <p class="task-description">{{ task.description }}</p>
+                }
+                <div class="task-footer">
+                  <span 
+                    class="priority-badge"
+                    [style.background-color]="getPriorityColor(task.priority)">
+                    {{ getPriorityLabel(task.priority) }}
+                  </span>
+                  <mat-icon class="comment-icon">comment</mat-icon>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

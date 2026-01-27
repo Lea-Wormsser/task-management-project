@@ -1,0 +1,40 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>{{ task.title }}</h2>
+  <button mat-icon-button (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <div class="task-info">
+    <div class="info-row">
+      <mat-icon>flag</mat-icon>
+      <span class="label">עדיפות:</span>
+      <span class="priority-badge" [style.background-color]="getPriorityColor(task.priority)">
+        {{ getPriorityLabel(task.priority) }}
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>trending_flat</mat-icon>
+      <span class="label">סטטוס:</span>
+      <span class="status-text">{{ getStatusLabel(task.status) }}</span>
+    </div>
+
+    @if (task.description) {
+      <div class="description-section">
+        <div class="section-title">
+          <mat-icon>description</mat-icon>
+          <span>תיאור</span>
+        </div>
+        <p class="description-text">{{ task.description }}</p>
+      </div>
+    }
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="comments-section">
+    <app-task-comments [taskId]="task.id"></app-task-comments>
+  </div>
+</mat-dialog-content>

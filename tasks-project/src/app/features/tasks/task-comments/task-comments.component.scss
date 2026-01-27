@@ -1,0 +1,155 @@
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  max-height: 500px;
+  overflow-y: auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.comments-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+
+  mat-icon {
+    color: #6366f1;
+  }
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  color: #9ca3af;
+  text-align: center;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.comment-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  &.my-comment {
+    background-color: #eef2ff;
+    border-right: 3px solid #6366f1;
+  }
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-avatar {
+  color: #6366f1;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.comment-content {
+  color: var(--text-primary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 20px;
+  border-top: 2px solid var(--border-color);
+}
+
+.comment-input {
+  width: 100%;
+  
+  ::ng-deep .mat-mdc-form-field {
+    font-family: 'Inter', sans-serif !important;
+  }
+  
+  ::ng-deep .mat-mdc-input-element {
+    font-family: 'Inter', sans-serif !important;
+  }
+}
+
+button {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+
+  mat-spinner {
+    display: inline-block;
+  }
+
+  mat-icon {
+    margin: 0;
+  }
+}
